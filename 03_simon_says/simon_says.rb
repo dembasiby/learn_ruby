@@ -20,6 +20,8 @@ def first_word(phrase)
 end
 
 def titleize(title)
-  a = title.split(' ')
-  a.map(&:capitalize).join(' ')
+  no_caps = ['and', 'the', 'or', 'to', 'of', 'by', 'from', 'over']
+  title.capitalize.gsub(/(\w+)/) do |word|
+    no_caps.include?(word) ? word : word.capitalize
+  end
 end
