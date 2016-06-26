@@ -8,6 +8,8 @@ def translate(word)
       result << w + 'ay'
    # elsif consonants.include?(w[0])
       #result << (w[1..-1] + w[0] + 'ay')
+    elsif w[0] == 'q' && w[1] == 'u'
+      result << (w[2..-1] + w[0..1] + 'ay')
     elsif consonants.include?(w[0]) &&
           consonants.include?(w[1]) &&
           consonants.include?(w[2])
@@ -15,7 +17,7 @@ def translate(word)
     elsif consonants.include?(w[0]) &&
           consonants.include?(w[1])
       result << (w[2..-1] + w[0..1] + 'ay')
-    elsif consonants.include?(w[0])
+     elsif consonants.include?(w[0])
       result << (w[1..-1] + w[0] + 'ay')
     end
   end
