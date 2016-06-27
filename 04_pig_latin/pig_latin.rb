@@ -1,25 +1,15 @@
-def translate(word)
-  vowels = ['a', 'i', 'u', 'o', 'e']
-  consonants = ('a'..'z').to_a - vowels
-  result = []
+def translate(s)
+  vowels = ['a','e','i','o','u','y']
 
-  word.split(' ').each do |w|
-    if vowels.include?(w[0])
-      result << w + 'ay'
-   # elsif consonants.include?(w[0])
-      #result << (w[1..-1] + w[0] + 'ay')
-    elsif w[0] == 'q' && w[1] == 'u'
-      result << (w[2..-1] + w[0..1] + 'ay')
-    elsif consonants.include?(w[0]) &&
-          consonants.include?(w[1]) &&
-          consonants.include?(w[2])
-      result << (w[3..-1] + w[0..2] + 'ay')
-    elsif consonants.include?(w[0]) &&
-          consonants.include?(w[1])
-      result << (w[2..-1] + w[0..1] + 'ay')
-     elsif consonants.include?(w[0])
-      result << (w[1..-1] + w[0] + 'ay')
+  s.split.map do |word|
+    i = 0
+    while not vowels.include?(word[i,1])
+      if ( word[i,2] == 'qu')
+        i += 2
+      else
+        i += 1
+      end
     end
-  end
-  result.join(' ')
+    word[i..-1] + word[0,i] + 'ay'
+  end.join(' ')
 end
