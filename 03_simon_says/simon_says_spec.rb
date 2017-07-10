@@ -16,7 +16,7 @@ require "simon_says"
 describe "Simon says" do
   describe "echo" do
     it "should echo hello" do
-      echo("hello").should == "hello"
+      echo("hello").expect == "hello"
     end
 
     it "should echo bye" do

@@ -1,10 +1,18 @@
-w = 'cherry'
+class Atbash
+  def self.encode(word)
+    first_13_letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"]
+    last_13_letters =  ["z", "y", "x", "w", "v", "u", "t", "s", "r", "q", "p", "o", "n"]
 
-vowels = ['a', 'e', 'i', 'u', 'o']
-consonants = ('a'..'z').to_a - vowels
-b = ''
-if consonants.include?((w[0] && w[1]))
-  b = (w[2..-1] + w[0..1]) << 'ay'
+    word.gsub!(/[^a-z0-9]/, '')
+
+    word.split('').map do |char|
+      if first_13_letters.include?(char)
+        last_13_letters[first_13_letters.index(char)]
+      else
+        first_13_letters[last_13_letters.index(char)]
+      end
+    end.join('')
+  end
 end
 
-p consonants 
+p Atbash.encode('OMG')
